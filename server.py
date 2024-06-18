@@ -3,6 +3,7 @@ from flask import Flask,request,jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 from routes import routes
+from middlewares import verify
 
 load_dotenv()
 
@@ -20,9 +21,8 @@ def apply_cors(response):
 def before_request():
     print('Request Headers', request.headers)
     origin = request.headers.get('Origin')
-def verify_middleware():
-    pass   
-app.before_request(verify_middleware) 
+ 
+app.before_request(verify) 
 
 app.register_blueprint(routes)
 
