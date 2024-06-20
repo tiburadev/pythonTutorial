@@ -30,9 +30,9 @@ class User(Base):
 
     # Query users
         users = session.query(User).all()
-        user_list = [user.to_dict() for user in users]
-        print(users)
-        return users
+        user_list = [(user.name, user.email) for user in users]
+        print(user_list)
+        return user_list
     @staticmethod
     def add_user(data):
      try:
