@@ -19,7 +19,6 @@ def get(status_code, message, data=None, success=False):
     response = {
         "status": status_code,
         "message": meta_type,
-        "data": [],
         "success": success
     }
     if(data):

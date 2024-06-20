@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 from app.routes import routes 
-from app.middlewares import verify
+# from app.middlewares import token_required
 import app.responses as responses
 from app.database import db, migrate
 from app.config import Config
@@ -26,8 +26,7 @@ def before_request():
     print('Request Headers', request.headers)
     origin = request.headers.get('Origin')
 
-app.before_request(verify)
-
+# app.before_request()
 app.register_blueprint(routes)
 
 @app.errorhandler(404)

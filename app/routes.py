@@ -4,6 +4,8 @@ routes = Blueprint('routes',__name__)
 # import mysql.connector
 from .controller import User
 from flask import  jsonify
+from app.middlewares import token_required
+
 
 # mydb = mysql.connector.connect(
 #   host="localhost",
@@ -14,6 +16,7 @@ from flask import  jsonify
 
 # mycursor = mydb.cursor()
 @routes.route('/sample-route',methods=['GET'])
+# @token_required
 def sample_route():
     # mycursor.execute("CREATE TABLE python (name VARCHAR(255), address VARCHAR(255))")
     obj=User()

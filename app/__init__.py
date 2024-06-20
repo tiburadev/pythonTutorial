@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
 from app import routes
-from .middlewares import verify
+from .middlewares import token_required
 from .database import db, migrate
 from .config import Config
 
@@ -30,7 +30,7 @@ def create_app():
         print('Request Headers', request.headers)
         origin = request.headers.get('Origin')
 
-    app.before_request(verify)
+    app.before_request(token_required)
 
     db.init_app(app)
     migrate.init_app(app, db)

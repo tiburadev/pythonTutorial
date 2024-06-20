@@ -17,9 +17,8 @@ class User(Base):
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     name = Column(String(50))
     email = Column(String(50))
-    # def __init__(self, data):
-    #     self.name = data.get('name')
-    #     self.email = data.get('email')
+    # def __init__(self):
+    #     pass
     @staticmethod
     def get_all_users():
         
@@ -30,6 +29,7 @@ class User(Base):
 
     # Query users
         users = session.query(User).all()
+        
         user_list = [(user.name, user.email) for user in users]
         print(user_list)
         return user_list
@@ -41,7 +41,7 @@ class User(Base):
         # Create tables
         print(data,'kkkkkk')
         Base.metadata.create_all(engine)
-        new_user = User(data)
+        new_user = User(name=data['name'],email=data['email'])
         session.add(new_user)
         session.commit()
         return  responses.get(200,"Sucess","user added ",True)
